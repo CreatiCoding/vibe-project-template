@@ -28,10 +28,9 @@ WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY .yarn .yarn
 COPY services/web/package.json services/web/package.json
-RUN yarn install --immutable
-
 COPY tsconfig.json ./
 COPY services/web services/web
+RUN yarn install --immutable
 RUN yarn workspace @my-app/service build
 
 ENV NODE_ENV=production
